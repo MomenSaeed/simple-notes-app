@@ -16,7 +16,7 @@ gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+# gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -27,6 +27,20 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+gem 'devise', '~> 4.7', '>= 4.7.2'            # Flexible authentication solution for Rails with Warden
+
+
+gem 'active_model_serializers', '~> 0.10.10'  # For api Data serialization
+
+gem 'has_scope'                               # Map incoming controller parameters to named scopes in your resources
+gem 'figaro', '~> 1.2'                        # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+
+gem 'foundation-rails', '~> 6.6', '>= 6.6.2.0'
+
+gem 'factory_bot_rails', '~> 5.2'
+
+gem 'simple_form', '~> 5.0', '>= 5.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +62,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.1', require: false
+  gem 'database_cleaner', require: false
+  gem 'shoulda-matchers', '~> 4.3', require: false
+  gem 'shoulda-context', '~> 2.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
