@@ -16,7 +16,7 @@ class Note < ApplicationRecord
   # == Scopes ===============================================================
 
   # == Callbacks ============================================================
-  after_commit :stream_action_cable
+  # after_commit :stream_action_cable
 
   # == Class Methods ========================================================
 
@@ -25,7 +25,7 @@ class Note < ApplicationRecord
   # == Private Methods ======================================================
   private
 
-    def stream_action_cable
-      ActionCable.server.broadcast("note_channel_#{self.id}", id: self.id, title: self.title, body: self.body)
-    end
+    # def stream_action_cable
+    #   ActionCable.server.broadcast("note_channel_#{self.id}", id: self.id, title: self.title, body: self.body)
+    # end
 end

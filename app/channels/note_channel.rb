@@ -7,6 +7,7 @@ class NoteChannel < ApplicationCable::Channel
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
+    stop_stream_from "note_channel_#{params[:note_id]}"
   end
 
   def receive(data)

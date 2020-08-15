@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  after_action :set_stream_viewer, only: [:edit]
 
   # GET /notes
   def index
@@ -36,6 +37,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
+      set_stream_viewer
       # redirect_to user_note_path(@note.creator_id, @note), notice: 'Note was successfully updated.'
     else
       render :edit
@@ -63,5 +65,12 @@ class NotesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def note_params
       params.require(:note).permit(:title, :body, :user_id)
+    end
+
+    def set_stream_viewer
+      if @note.present? && current_user.present?
+        ActionCable.server.broadcast("note_channel_#{@note.id}", id: @note.id, title: @note.title,
+          body: @note.body, collaborator: {  id: current_user.id, email: current_user.email})
+      end
     end
 end
