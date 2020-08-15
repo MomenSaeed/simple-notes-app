@@ -1,13 +1,15 @@
+<div id="note-id" data-note-id="<%= @note.try(:id) %>"></div>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
 <%= simple_form_for [@user, @note], (@note.new_record? ? {} : {:remote => true}) do |f| %>
   <%= f.error_notification %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :title, {:onchange => @note.new_record? ? '' : 'this.form.submit()'} %>
+    <%= f.input :title, :input_html => {:id => "note-title-input-#{@note.try(:id)}", :onchange => @note.new_record? ? '' : 'this.form.submit()'} %>
 
 
-    <%= f.input :body, :input_html => {:cols => 80, :rows => 20, :onchange => @note.new_record? ? '' : 'this.form.submit()'} %>
+    <%= f.input :body, :input_html => {:id => "note-body-input-#{@note.try(:id)}",:cols => 80, :rows => 20, :onchange => @note.new_record? ? '' : 'this.form.submit()'} %>
     <% if false %>
 
     <%= f.association :user %>
