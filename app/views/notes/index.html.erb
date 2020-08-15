@@ -15,8 +15,8 @@
   <tbody>
     <% @notes.each do |note| %>
       <tr>
-        <td><%= note.title %></td>
-        <td><%= note.body %></td>
+        <td><%= note.title.truncate(27) %></td>
+        <td><%= note.body.truncate(27) %></td>
         <td><%= note.creator_id %></td>
         <td><%= link_to 'Show', user_note_path(note.creator_id, note) %></td>
         <td><%= link_to 'Edit', edit_user_note_path(note.creator_id, note) %></td>
