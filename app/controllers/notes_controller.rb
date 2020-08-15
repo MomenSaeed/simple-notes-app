@@ -36,7 +36,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
-      redirect_to user_note_path(@note.creator_id, @note), notice: 'Note was successfully updated.'
+      # redirect_to user_note_path(@note.creator_id, @note), notice: 'Note was successfully updated.'
     else
       render :edit
     end

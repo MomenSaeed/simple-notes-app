@@ -1,13 +1,13 @@
-
-<%= simple_form_for [@user, @note] do |f| %>
+<%= simple_form_for [@user, @note], (@note.new_record? ? {} : {:remote => true}) do |f| %>
   <%= f.error_notification %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
+    <%= f.input :title, {:onchange => @note.new_record? ? '' : 'this.form.submit()'} %>
 
 
-    <%= f.input :body, :input_html => {:cols => 80, :rows => 20} %>
+    <%= f.input :body, :input_html => {:cols => 80, :rows => 20, :onchange => @note.new_record? ? '' : 'this.form.submit()'} %>
     <% if false %>
 
     <%= f.association :user %>
